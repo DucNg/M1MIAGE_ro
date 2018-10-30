@@ -5,10 +5,10 @@ public class Example {
     public static void main(String[] args) { 
         try { 
             IloCplex  cplex =  new  IloCplex(); 
-            double[]    lb =  {0.0, 0.0, 0.0}; 
-            double[]    ub =  {40.0, Double.MAX_VALUE, Double.MAX_VALUE}; 
-            IloNumVar[] x  = cplex.numVarArray(3, lb,  ub); 
-            double[]  objvals =  {1.0, 2.0, 3.0}; 
+            int[]    lb =  {0, -Integer.MAX_VALUE, -Integer.MAX_VALUE}; // Bornes inférieur x1, x2 et pour x3 -inf
+            int[]    ub =  {40, 100, Integer.MAX_VALUE}; // Borne supérieur x1, x2, x3
+            IloIntVar[] x  = cplex.intVarArray(3, lb,  ub); 
+            int[]  objvals =  {1, 2, 3}; 
             cplex.addMaximize(cplex.scalProd(x, objvals)); 
             cplex.addLe(cplex.sum(cplex.prod(-1.0, x[0]), 
                                   cplex.prod( 1.0, x[1]), 
