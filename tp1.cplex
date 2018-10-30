@@ -96,4 +96,4 @@ x3                           42.000000
 CPLEX> display solution objective 
 MIP - Integer optimal solution:  Objective =  2.0200000000e+02
 
-# La solution optimale est énorme. La valeur de x2 est passer de 17 à 18 après les modifications.
+# La solution optimale est énorme. La valeur de x2 est passer de 17 à 18 après les modifications. Une fois les valeurs arrondi, la valeur de x2 a été modifié et ainsi la solution optimale également.
