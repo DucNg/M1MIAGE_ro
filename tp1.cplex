@@ -1,0 +1,10 @@
+enter exercice1
+maximize x1 + 2 x2 + 3 x3
+subject to -x1 + x2 + x3 < 20
+x1 - 3 x2 + x3 <= 30
+bounds
+0 <= x1 <= 40
+x2 <= 100
+end
+
+optimize
