@@ -6,5 +6,94 @@ bounds
 0 <= x1 <= 40
 x2 <= 100
 end
+display problem all
+
+Maximize
+ obj: x1 + 2 x2 + 3 x3
+Subject To
+ c1: - x1 + x2 + x3 <= 20
+ c2: x1 - 3 x2 + x3 <= 30
+Bounds
+ 0 <= x1 <= 40
+ 0 <= x2 <= 100
+ All other variables are >= 0.
+# la borne inférieur de x2 a été mit par défaut à 0, ce n'est pas ce qu'on veut.
+
+CPLEX> change
+
+Change options:
+
+bounds           change bounds on a variable
+coefficient      change a coefficient
+delete           delete some part of the problem
+name             change a constraint or variable name
+objective        change objective function coefficient
+problem          change problem type
+qpterm           change a quadratic objective term
+rhs              change a right-hand side or network supply/demand value
+sense            change objective function or a constraint sense
+type             change variable type
+values           change small values in the problem to zero
+
+Change to make: bounds
+Change bounds on which variable: x2
+Present bounds on variable x2:  0 <= x2 <= 100
+Change lower or upper bound, or both ['l', 'u', or 'b']: l
+Change lower bound to what ['-inf' for no lower bound]: -inf
+New bounds on variable 'x2':  -Inf <= x2 <= 100
 
 optimize
+CPLEX> display solution variables x1-3
+Variable Name           Solution Value
+x1                           40.000000
+x2                           17.500000
+x3                           42.500000
+
+CPLEX> change
+
+Change options:
+
+bounds           change bounds on a variable
+coefficient      change a coefficient
+delete           delete some part of the problem
+name             change a constraint or variable name
+objective        change objective function coefficient
+problem          change problem type
+qpterm           change a quadratic objective term
+rhs              change a right-hand side or network supply/demand value
+sense            change objective function or a constraint sense
+type             change variable type
+values           change small values in the problem to zero
+
+Change to make: problem
+Problem is 'lp'.
+Change to which problem type ['lp', 'milp', 'fixed_milp', 'qp', 'miqp',
+  'fixed_miqp', 'qcp', 'miqcp', or 'network']: milp
+Problem changed to MILP.
+
+CPLEX> change type
+Change type of which variable: x1
+Present type of variable 'x1' is Continuous.
+New type ['B' (Binary), 'I' (general Integer), 'C' (Continuous),
+          'S' (Semi-continuous), 'N' (Semi-integer)]:I
+New type of variable 'x1' is general Integer.
+
+CPLEX> change type x2 I
+New type of variable 'x2' is general Integer.
+
+display problem all
+optimize
+
+# Valeur des variables 
+CPLEX> display solution variables x1-3
+Incumbent solution
+Variable Name           Solution Value
+x1                           40.000000
+x2                           18.000000
+x3                           42.000000
+
+# Valeur de la fonction objectif
+CPLEX> display solution objective 
+MIP - Integer optimal solution:  Objective =  2.0200000000e+02
+
+# La solution optimale est énorme. La valeur de x2 est passer de 17 à 18 après les modifications.
